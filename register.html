@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KDAG Bootcamp Registration</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">KDAG Ecosystem</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="register.html" class="active btn-nav">Register Now</a>
+    </nav>
+  </header>
+
+  <main class="form-container">
+    <div class="form-card" id="formWrapper">
+      <h2>Bootcamp Registration</h2>
+      <p class="subtitle">Fill in your details to secure your slot.</p>
+      
+      <div id="errorMessage" class="error-box hidden"></div>
+
+      <form id="registrationForm" novalidate>
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" placeholder="e.g. John Doe" />
+        </div>
+
+        <div class="form-group">
+          <label for="rollNumber">Roll Number (9 Characters)</label>
+          <input type="text" id="rollNumber" placeholder="e.g. 26XX10001" maxlength="9" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="e.g. john@example.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="department">Department</label>
+          <select id="department">
+            <option value="">Select your department</option>
+            <option value="CSE">Computer Science & Engineering</option>
+            <option value="ECE">Electronics & Electrical Communication</option>
+            <option value="EE">Electrical Engineering</option>
+            <option value="ME">Mechanical Engineering</option>
+            <option value="OTHER">Other Department</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-primary btn-full">Register</button>
+      </form>
+    </div>
+
+    <div id="successPopup" class="success-card hidden">
+      <div class="icon-check">✓</div>
+      <h2>Registration Successful!</h2>
+      <p>Welcome to the Bootcamp! We have logged your details.</p>
+      <a href="index.html" class="btn-primary">Back to Home</a>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
