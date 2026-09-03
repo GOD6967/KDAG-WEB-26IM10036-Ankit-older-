@@ -4,11 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KDAG Bootcamp Registration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="navbar">
-    <div class="logo">KDAG Ecosystem</div>
+    <div class="logo">
+      <img src="assets/logo.png" alt="KDAG Logo" />
+      <span>KDAG Ecosystem</span>
+    </div>
     <nav>
       <a href="index.html">Home</a>
       <a href="register.html" class="active btn-nav">Register Now</a>
@@ -25,28 +31,29 @@
       <form id="registrationForm" novalidate>
         <div class="form-group">
           <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" placeholder="e.g. John Doe" />
+          <input type="text" id="fullName" placeholder="e.g. Ankit Kumar" />
         </div>
 
         <div class="form-group">
-          <label for="rollNumber">Roll Number (9 Characters)</label>
-          <input type="text" id="rollNumber" placeholder="e.g. 26XX10001" maxlength="9" />
+          <label for="rollNumber">Roll Number (e.g. 26IM10036)</label>
+          <input type="text" id="rollNumber" placeholder="26IM10036" maxlength="9" />
         </div>
 
         <div class="form-group">
           <label for="email">Email Address</label>
-          <input type="email" id="email" placeholder="e.g. john@example.com" />
+          <input type="email" id="email" placeholder="ankit@example.com" />
         </div>
 
         <div class="form-group">
           <label for="department">Department</label>
           <select id="department">
             <option value="">Select your department</option>
-            <option value="CSE">Computer Science & Engineering</option>
-            <option value="ECE">Electronics & Electrical Communication</option>
-            <option value="EE">Electrical Engineering</option>
-            <option value="ME">Mechanical Engineering</option>
-            <option value="OTHER">Other Department</option>
+            <option value="Industrial & Systems Engineering">Industrial & Systems Engineering</option>
+            <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+            <option value="Electronics & Electrical Communication">Electronics & Electrical Communication</option>
+            <option value="Electrical Engineering">Electrical Engineering</option>
+            <option value="Mechanical Engineering">Mechanical Engineering</option>
+            <option value="Other">Other Department</option>
           </select>
         </div>
 
