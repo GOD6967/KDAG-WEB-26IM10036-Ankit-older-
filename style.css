@@ -1,43 +1,71 @@
+/* ============================================
+   KDAG Bootcamp — Design Tokens
+   Dark theme + glassmorphism, matching the
+   real KDAG website's visual identity (red/white on dark).
+   ============================================ */
 :root {
   --bg-color: #111111;
+  --bg-color-alt: #0a0a0a;
   --card-bg: rgba(255, 255, 255, 0.06);
   --card-border: rgba(255, 255, 255, 0.18);
-  --primary: #1c1cf0;
-  --primary-hover: #3572c3;
+  --primary: #DC2626;
+  --primary-hover: #B91C1C;
+  --accent-gold: #f87171;
   --text-color: #ffffff;
   --text-muted: rgba(255, 255, 255, 0.7);
   --error-color: #ff6b6b;
-  --success-color: #00ff11;
+  --success-color: #2ee66b;
 }
 
+/* ============================================
+   Reset & base
+   ============================================ */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Montserrat', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--bg-color);
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--bg-color);
   color: var(--text-color);
   line-height: 1.6;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
-/* Navbar */
+h1, h2, h3, .logo {
+  font-family: 'Poppins', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ============================================
+   Navbar
+   ============================================ */
 .navbar {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
-  z-index: 20;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 5%;
+  padding: 1rem 6%;
   background: rgba(17, 17, 17, 0.85);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--card-border);
 }
 
@@ -45,125 +73,192 @@ body {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: 'Poppins', sans-serif;
   font-weight: 900;
-  font-size: 1.1rem;
-}
-
-.logo img {
-  height: 28px;
-  width: auto;
-  object-fit: contain;
-}
-
-.navbar a {
-  color: var(--text-muted);
-  text-decoration: none;
-  margin-left: 1.5rem;
-  transition: color 0.25s;
-}
-
-.navbar a:hover,
-.navbar a.active {
+  font-size: 1.2rem;
   color: var(--text-color);
 }
 
-.navbar .btn-nav {
-  border: 1px solid var(--card-border);
-  padding: 0.4rem 1rem;
-  border-radius: 20px;
+.logo-icon {
+  height: 32px;
+  width: auto;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 6px rgba(220, 38, 38, 0.6));
 }
 
-/* Hero Section */
+.navbar nav a {
+  color: var(--text-muted);
+  margin-left: 1.8rem;
+  font-weight: 600;
+  transition: color 0.25s ease;
+}
+
+.navbar nav a:hover,
+.navbar nav a.active {
+  color: var(--text-color);
+}
+
+.navbar nav a.btn-nav {
+  background: linear-gradient(to right, var(--primary), var(--primary-hover));
+  padding: 0.5rem 1.2rem;
+  border-radius: 30px;
+  color: #fff;
+  margin-left: 1.8rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.navbar nav a.btn-nav:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(220, 38, 38, 0.5);
+}
+
+/* ============================================
+   Hero section (index.html)
+   ============================================ */
 .hero-section {
-  min-height: 85vh;
+  position: relative;
+  min-height: 92vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 8rem 1rem 3rem;
-  background: radial-gradient(circle at 50% 30%, rgba(28, 28, 240, 0.25), transparent 60%);
+  padding: 8rem 1.5rem 3rem;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(220, 38, 38, 0.18), transparent 55%),
+    radial-gradient(circle at 75% 70%, rgba(248, 113, 113, 0.08), transparent 50%),
+    var(--bg-color);
+}
+
+.network-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.8;
 }
 
 .hero-content {
-  max-width: 800px;
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+}
+
+.text-accent {
+  color: var(--primary);
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  color: var(--accent-gold);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
 }
 
 .hero-content h1 {
-  font-family: 'Poppins', sans-serif;
   font-weight: 900;
   font-size: clamp(2rem, 5vw, 3.2rem);
-  text-shadow: 0 0 20px rgba(28, 28, 240, 0.6);
+  line-height: 1.25;
+  text-shadow: 0 0 18px rgba(220, 38, 38, 0.55);
   margin-bottom: 1.2rem;
 }
 
 .hero-content p {
   color: var(--text-muted);
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
 }
 
-/* Buttons */
+/* ============================================
+   Buttons
+   ============================================ */
 .btn-primary {
   display: inline-block;
-  padding: 0.8rem 2rem;
-  border-radius: 30px;
+  padding: 0.9rem 2.2rem;
   border: none;
-  color: white;
+  border-radius: 30px;
+  color: #ffffff;
   font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  background: linear-gradient(to right, var(--primary), var(--primary-hover), var(--primary));
-  background-size: 200% 100%;
-  transition: all 0.3s ease;
-  text-decoration: none;
+  background: linear-gradient(
+    to right,
+    var(--primary),
+    var(--primary-hover),
+    var(--primary-hover),
+    var(--primary)
+  );
+  background-size: 300% 100%;
+  transition: background-position 0.4s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .btn-primary:hover {
   background-position: 100% 0;
   transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
 }
 
 .btn-full {
   width: 100%;
-  margin-top: 1rem;
+  text-align: center;
 }
 
-/* Features Section */
+/* ============================================
+   Features section (index.html)
+   ============================================ */
 .features {
-  padding: 4rem 5%;
+  padding: 5rem 6%;
   text-align: center;
 }
 
 .features h2 {
-  font-family: 'Poppins', sans-serif;
   font-size: 2rem;
-  margin-bottom: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.features-subtitle {
+  color: var(--text-muted);
+  max-width: 550px;
+  margin: 0 auto 2.5rem;
 }
 
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+  gap: 1.8rem;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .card {
   background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  border: 1px solid rgba(220, 38, 38, 0.4);
   border-radius: 16px;
-  padding: 2rem;
+  padding: 2rem 1.6rem;
   backdrop-filter: blur(12px);
-  border-top: 3px solid var(--primary);
-  transition: transform 0.25s;
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-align: left;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 0 32px rgba(220, 38, 38, 0.45);
+}
+
+.card-icon {
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
 }
 
 .card h3 {
-  font-family: 'Poppins', sans-serif;
-  margin-bottom: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
 }
 
 .card p {
@@ -171,51 +266,158 @@ body {
   font-size: 0.95rem;
 }
 
-/* Form Section */
+/* ============================================
+   Footer
+   ============================================ */
+footer {
+  text-align: center;
+  padding: 3rem 6% 1.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-top: 1px solid var(--card-border);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto 2rem;
+  text-align: left;
+}
+
+.footer-col h4 {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.footer-col a {
+  display: block;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.footer-col a:hover {
+  color: var(--primary);
+}
+
+.footer-col-center,
+.footer-col-right {
+  text-align: center;
+  border-left: 1px solid var(--card-border);
+  padding-left: 2rem;
+}
+
+.footer-col-right p {
+  font-size: 0.85rem;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.social-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-3px);
+}
+
+.footer-logo img {
+  height: 48px;
+  margin: 0.5rem auto 1.2rem;
+  display: block;
+  filter: drop-shadow(0 0 8px rgba(220, 38, 38, 0.5));
+}
+
+.footer-bottom {
+  margin-bottom: 0.8rem;
+}
+
+.footer-bottom a {
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.footer-bottom a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom .dot {
+  margin: 0 0.6rem;
+  color: var(--card-border);
+}
+
+.copyright {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* ============================================
+   Registration form page
+   ============================================ */
 .form-container {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 7rem 1rem 3rem;
-  background: radial-gradient(circle at 50% 40%, rgba(28, 28, 240, 0.15), transparent 70%);
+  padding: 8rem 1.5rem 3rem;
+  background:
+    radial-gradient(circle at 70% 20%, rgba(220, 38, 38, 0.15), transparent 55%),
+    var(--bg-color);
 }
 
 .form-card,
 .success-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-top: 4px solid var(--primary);
-  border-radius: 16px;
-  backdrop-filter: blur(15px);
-  padding: 2.5rem;
   width: 100%;
-  max-width: 450px;
+  max-width: 460px;
+  background: var(--card-bg);
+  border: 1px solid rgba(220, 38, 38, 0.4);
+  border-radius: 18px;
+  padding: 2.6rem 2.2rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 0 35px rgba(220, 38, 38, 0.3);
 }
 
-.form-card h2 {
-  font-family: 'Poppins', sans-serif;
-  margin-bottom: 0.3rem;
+.form-card h2,
+.success-card h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
 }
 
-.subtitle {
+.form-card .subtitle {
   color: var(--text-muted);
   font-size: 0.9rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem;
 }
 
 .form-group {
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
   text-align: left;
 }
 
 .form-group label {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
   font-weight: 600;
+  font-size: 0.9rem;
   color: var(--text-muted);
-  font-size: 0.85rem;
 }
 
 .form-group input,
@@ -224,75 +426,117 @@ body {
   border: none;
   border-bottom: 1px solid var(--card-border);
   color: var(--text-color);
-  padding: 0.6rem 0.2rem;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
+  padding: 0.6rem 0.2rem;
+  transition: border-color 0.25s ease;
 }
 
-/* Fix dropdown contrast on dark background */
-select option {
-  background-color: #111111;
-  color: #ffffff;
+.form-group select option {
+  background: #1a1a1a;
+  color: var(--text-color);
+}
+
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
 }
 
 .form-group input:focus,
 .form-group select:focus {
   outline: none;
   border-bottom: 1px solid var(--primary);
+  box-shadow: 0 1px 0 0 var(--primary);
 }
 
+/* ============================================
+   Error box
+   ============================================ */
 .error-box {
-  background: rgba(255, 107, 107, 0.15);
-  border: 1px solid var(--error-color);
+  background: rgba(255, 107, 107, 0.12);
+  border: 1px solid rgba(255, 107, 107, 0.4);
   color: var(--error-color);
-  padding: 0.75rem;
-  border-radius: 8px;
-  margin-bottom: 1.2rem;
-  font-size: 0.85rem;
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.4rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
-.hidden {
-  display: none !important;
-}
-
-/* Success Card */
+/* ============================================
+   Success card
+   ============================================ */
 .success-card {
   text-align: center;
-  border-top: 4px solid var(--success-color);
+  border: 1px solid rgba(46, 230, 107, 0.4);
+  box-shadow: 0 0 35px rgba(46, 230, 107, 0.25);
 }
 
-.icon-check {
-  font-size: 3rem;
+.success-card .icon-check {
+  width: 56px;
+  height: 56px;
+  line-height: 56px;
+  margin: 0 auto 1.2rem;
+  border-radius: 50%;
+  background: rgba(46, 230, 107, 0.15);
   color: var(--success-color);
-  margin-bottom: 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 700;
 }
 
 .success-card p {
   color: var(--text-muted);
-  margin: 0.5rem 0 1.5rem;
+  margin-bottom: 1.6rem;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 1.5rem;
-  border-top: 1px solid var(--card-border);
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  margin-top: auto;
+/* ============================================
+   Utility
+   ============================================ */
+.hidden {
+  display: none !important;
 }
 
-/* Responsiveness */
-@media (max-width: 600px) {
+/* ============================================
+   Responsiveness
+   ============================================ */
+@media (max-width: 640px) {
   .navbar {
     flex-direction: column;
     gap: 0.8rem;
     padding: 1rem;
   }
-  .navbar a {
-    margin-left: 0.8rem;
-    margin-right: 0.8rem;
+
+  .navbar nav a {
+    margin: 0 0.7rem;
   }
+
+  .hero-section,
+  .form-container {
+    padding-top: 9rem;
+  }
+
   .hero-content h1 {
     font-size: 1.8rem;
+  }
+
+  .form-card,
+  .success-card {
+    padding: 2rem 1.4rem;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .footer-col-center,
+  .footer-col-right {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .footer-col a {
+    display: inline-block;
+    margin: 0 0.5rem;
   }
 }

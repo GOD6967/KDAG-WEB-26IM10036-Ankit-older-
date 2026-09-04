@@ -1,42 +1,52 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("registrationForm");
-  const formWrapper = document.getElementById("formWrapper");
-  const successPopup = document.getElementById("successPopup");
-  const errorBox = document.getElementById("errorMessage");
-
   if (!form) return;
 
-  form.addEventListener("submit", (e) => {
+  const formWrapper = document.getElementById("formWrapper");
+  const errorMessage = document.getElementById("errorMessage");
+  const successPopup = document.getElementById("successPopup");
+
+  const fullNameInput = document.getElementById("fullName");
+  const rollNumberInput = document.getElementById("rollNumber");
+  const emailInput = document.getElementById("email");
+  const departmentInput = document.getElementById("department");
+
+  const rollNumberPattern = /^\d{2}[A-Za-z]{2}\d{5}$/;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // Values
-    const name = document.getElementById("fullName").value.trim();
-    const roll = document.getElementById("rollNumber").value.trim().toUpperCase();
-    const email = document.getElementById("email").value.trim();
-    const department = document.getElementById("department").value;
+    const fullName = fullNameInput.value.trim();
+    const rollNumber = rollNumberInput.value.trim();
+    const email = emailInput.value.trim();
+    const department = departmentInput.value.trim();
 
-    let errors = [];
+    const errors = [];
 
-    // 1. Presence Validation
-    if (!name || !roll || !email || !department) {
-      errors.push("All fields are required.");
+    if (!fullName) errors.push("Full Name is required.");
+    if (!rollNumber) errors.push("Roll Number is required.");
+    if (!email) errors.push("Email is required.");
+    if (!department) errors.push("Please select a Department.");
+
+    if (rollNumber && rollNumber.length !== 9) {
+      errors.push("Roll Number must be exactly 9 characters long (e.g. 26XX10001).");
+    } else if (rollNumber && !rollNumberPattern.test(rollNumber)) {
+      errors.push("Roll Number must be in the format 26XX10001 (2 digits, 2 letters, 5 digits).");
     }
 
-    // 2. Format Validation for Roll Number (e.g., 26IM10036)
-    const rollRegex = /^\d{2}[A-Z]{2}\d{5}$/;
-    if (roll && !rollRegex.test(roll)) {
-      errors.push("Roll Number must match format 26XX10001 (9 characters).");
+    if (email && !emailPattern.test(email)) {
+      errors.push("Please enter a valid email address.");
     }
 
-    // Handle Failures
     if (errors.length > 0) {
-      errorBox.innerHTML = errors.join("<br>");
-      errorBox.classList.remove("hidden");
+      errorMessage.innerHTML = errors.join("<br>");
+      errorMessage.classList.remove("hidden");
       return;
     }
 
-    // Handle Success
-    errorBox.classList.add("hidden");
+    errorMessage.classList.add("hidden");
+    errorMessage.innerHTML = "";
     formWrapper.classList.add("hidden");
     successPopup.classList.remove("hidden");
   });
